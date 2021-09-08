@@ -14,16 +14,24 @@ inputEl.addEventListener('input', debounce(foundCountries, 500));
 function foundCountries(e) {
   const name = e.target.value;
 
-  fetchCountries(name).then(country => {
-    if (country.length > 10) {
-      console.log('сделать запрос более специфичным');
-    } else {
-      const countries = country.length < 2 ? oneCountry(country) : listCountries(country);
-      boxCountryEl.innerHTML = countries;
-    }
-  });
-  // .catch(error => {
-  //   console.log(`ошибочка ${error}`);
-  //   boxCountryEl.innerHTML = '';
-  // });
+  fetchCountries(name)
+    .then(country => {
+      //   console.log(country);
+      if (country.length > 10) {
+        console.log('сделать запрос более специфичным');
+      } else {
+        const countries = country.length < 2 ? oneCountry(country) : listCountries(country);
+        boxCountryEl.innerHTML = countries;
+      }
+    })
+    .catch(error => {
+      //   console.log(`ошибочка`);
+      console.log(error);
+      notFound();
+      //   boxCountryEl.innerHTML = '';
+    });
+}
+
+function notFound() {
+  boxCountryEl.innerHTML = '';
 }
