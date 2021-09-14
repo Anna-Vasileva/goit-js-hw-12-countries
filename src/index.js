@@ -35,20 +35,15 @@ function foundCountries(e) {
   clearList();
 
   if (!name) {
-    //   document.querySelector('.country__list').innerHTML = '';
     return;
   }
 
   fetchCountries(name)
     .then(country => {
-      //   console.log(country);
       if (country.length > 10) {
-        // clearList();
         console.log('сделать запрос более специфичным');
         myError(textSpecific);
       } else if (!country.length) {
-        // console.log(2);
-        // clearList();
         myError(textNotFound);
       } else {
         const countries = country.length < 2 ? oneCountry(country) : listCountries(country);
@@ -56,10 +51,6 @@ function foundCountries(e) {
       }
     })
     .catch(error => {
-      //   console.log(1);
-      //   console.log(error);
-      //   clearList();
-      //   myError(textNotFound);
       myError(textError);
     });
 }
